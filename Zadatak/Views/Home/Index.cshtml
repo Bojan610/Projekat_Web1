@@ -1,0 +1,113 @@
+﻿@using Zadatak.Models
+@model IEnumerable<Aranzman>
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <style>
+
+        body {
+            margin-left: 100px;
+            background-color: aliceblue;
+        }
+
+        div.Pframe {
+            height: 110px;
+            border: 1px solid gray;
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        div.container {
+            display: table-row
+        }
+
+        div.item {
+            float: left;
+            margin: 5px;
+            margin-right: 40px;
+        }
+
+        div.cena {
+            float: left;
+            margin: 5px;
+            margin-left: 130px;
+        }
+
+        span.od {
+            color: red;
+            font-size: 20px;
+        }
+
+        span.cifra {
+            color: gray;
+            font-size: 30px;
+        }
+
+        img {
+            height: 70px;
+            width: 70px;
+            margin-right: 10px;
+        }
+
+        input {
+            background-color: limegreen;
+            color: white;
+            border: none;
+        }
+
+            input:hover {
+                border: 1px solid gray;
+            }
+
+        form {
+            display: inline;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2> Predstojeci aranzmani</h2>
+    <form method="post" action="~/Authentication/LogIn1">
+        <input type="submit" value="Prijavi se" />
+    </form>
+    <form method="post" action="~/Authentication/Index">
+        <input type="submit" value="Registruj se" />
+    </form>
+    <form action="~/Home/PregledajProsleAranzmane">
+        <input type="submit" value="Pogledaj prosle aranzmane" />
+    </form>
+    <div class="container">
+        @foreach (Aranzman item in Model)
+        {
+            <div class="Pframe">
+                <div class="item">
+                    Polazak<br />
+                    @item.DatumPocetka
+                </div>
+                <div class="item">
+                    Povratak<br />
+                    @item.DatumZavrsetka
+                </div>
+                <div class="item">
+                    Dana<br />
+                    @item.Dana
+                </div>
+                <div class="item">
+                    <img src=@item.Poster />@item.LokacijaPutovanja
+                </div>
+                <div class="cena">
+                    cena<br />
+                    <span class="od">od </span><span class="cifra">@item.Smestaj.SmestajneJedinice[0].Cena</span>,00 EUR<br />
+                    <form method="post" action="~/Home/PregledajAranzman">
+                        <input type="text" name="naziv" value="@item.Naziv" hidden />
+                        <input type="submit" value="Pogledaj" />
+                    </form>
+
+                </div>
+            </div>
+        }
+    </div>
+</body>
+

@@ -1,0 +1,101 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Aranzman
+@{
+    ViewBag.Title = "RezervisiSmestaj";
+}
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        td {
+            width: 300px;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            align-self: center;
+            background-color: limegreen;
+            color: white;
+            border: 1px solid black;
+        }
+
+            input:hover {
+                border: 1px solid gray;
+            }
+    </style>
+</head>
+<body>
+    <h2>Pregled smestaja</h2>
+    <table>
+        <tr>
+            <td>Naziv</td>
+            <td>@Model.Smestaj.Naziv</td>
+        <tr class="odd">
+            <td>Tip smestaja</td>
+            <td>@Model.Smestaj.TipSmestaja</td>
+        </tr>
+        <tr>
+            <td>Broj zvezdica</td>
+            <td>@Model.Smestaj.BrojZvezdica</td>
+        </tr>
+        <tr class="odd">
+            <td>Postojanje bazena</td>
+            <td>@Model.Smestaj.ImaBazen</td>
+        </tr>
+        <tr>
+            <td>Postojanje spa centra</td>
+            <td>@Model.Smestaj.ImaSpaCentar</td>
+        </tr>
+        <tr class="odd">
+            <td>Prilagodjeno za osobe sa invaliditetom</td>
+            <td>@Model.Smestaj.OsobeSaInvaliditetom</td>
+        </tr>
+        <tr>
+            <td>Postoji Wi-Fi</td>
+            <td>@Model.Smestaj.ImaWiFi</td>
+        </tr>
+    </table>
+    <h2>Lista slobodnih smestajnih jedinica</h2>
+    <table>
+        <tr>
+            <td>Dozvoljen broj gostiju</td>
+            <td>Dozvoljen boravak kucnim ljubimcima</td>
+            <td>Cena za smestajnu jedinicu</td>
+            <td>Jedinstveni indefitikator za smestajnu jedinicu</td>
+        </tr>
+        @foreach (SmestajnaJedinica item in Model.Smestaj.SlobodneSmestajneJedinice)
+        {
+            if (!item.IsDeleted)
+            {
+                <tr class="odd">
+                    <td>@item.MaxBrojGostiju</td>
+                    <td>@item.KucniLjubimci</td>
+                    <td>@item.Cena</td>
+                    <td>@item.IdSmestajneJedinice</td>
+                    <td>
+                        <form method="post" action="~/Turista/Rezervisi">
+                            <input type="text" name="id" value="@item.IdSmestajneJedinice" hidden />
+                            <input type="text" name="naziv" value="@Model.Naziv" hidden />
+                            <input type="submit" value="Rezervisi" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</body>
+</html>
+

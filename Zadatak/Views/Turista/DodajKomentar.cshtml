@@ -1,0 +1,81 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Aranzman
+@{
+    ViewBag.Title = "DodajKomentar";
+}
+
+<html>
+<head>
+    <script type="text/javascript">
+        function proveraUnosa(forma) {
+            if (forma.ocena.value === "") {
+                document.getElementById("ocena").focus();
+                alert("Polje ocena ne sme da bude prazno!");
+                return false;
+            } else if (forma.ocena.value < 1) {
+                document.getElementById("ocena").focus();
+                alert("Polje ocena mora biti u ospegu izmedju 1 i 5!");
+                return false;
+            } else if (forma.ocena.value > 5) {
+                document.getElementById("ocena").focus();
+                alert("Polje ocena mora biti u ospegu izmedju 1 i 5!");
+                return false;
+            } else if (forma.komentarTekst.value === "") {
+                document.getElementById("komentarTekst").focus();
+                alert("Polje tekst komentarar ne sme da bude prazno!");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            background-color: aliceblue;
+        }
+
+            input.button {
+                align-self: center;
+                background-color: limegreen;
+                color: white;
+                border: 1px solid black;
+            }
+
+                input.button:hover {
+                    border: 1px solid gray;
+                }
+    </style>
+</head>
+<body>
+    <h2>Ostavi komentar za @Model.Naziv aranzman</h2>
+    <form onsubmit="return proveraUnosa(this)" method="post" action="DodajKomentar1">
+        <table>
+            <tr><td>Ocena(od 1 do 5):</td><td><input type="number" name="ocena" id="ocena" /></td></tr>
+            <tr class="odd"><td>Tekst komentara:</td><td><input type="text" name="komentarTekst" id="komentarTekst" /></td></tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input class="button" type="submit" value="Ostavi komentar" />
+                </td>
+            </tr>
+            <tr><td><input type="text" name="naziv" value="@Model.Naziv" hidden /></td></tr>
+        </table>
+    </form>
+
+</body>
+</html>
+
+

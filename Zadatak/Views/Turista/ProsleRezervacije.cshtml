@@ -1,0 +1,72 @@
+﻿@using Zadatak.Models
+@model IEnumerable<Rezervacija>
+@{
+    ViewBag.Title = "ProsleRezervacije";
+}
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        td {
+            width: 200px;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            align-self: center;
+            background-color: limegreen;
+            color: white;
+            border: 1px solid black;
+        }
+
+            input:hover {
+                border: 1px solid gray;
+            }
+    </style>
+</head>
+<body>
+    <h2>Moje prosle rezervacije</h2>
+    <table>
+        <tr>
+            <td>Id rezervacije</td>
+            <td>Ime turiste</td>
+            <td>Status</td>
+            <td>Naziv aranzmana</td>
+            <td>Id smestajne jedinice</td>
+        </tr>
+        @foreach (Rezervacija item in Model)
+        {
+            <tr class="odd">
+                <td>@item.IdRezervacije</td>
+                <td>@item.Turista.Ime</td>
+                <td>@item.Status</td>
+                <td>@item.Aranzman.Naziv</td>
+                <td>@item.SmestajnaJedinica.IdSmestajneJedinice</td>
+                <td>
+                    <form method="post" action="~/Turista/DodajKomentar">
+                        <input type="text" name="naziv" value="@item.Aranzman.Naziv" hidden />
+                        <input type="submit" value="Ostavi komentar" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,70 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Korisnik
+@{
+    ViewBag.Title = "PregledajKorisnika";
+}
+
+<head>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+        }
+
+        td {
+            width: 300px;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            align-self: center;
+            background-color: limegreen;
+            color: white;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Pregled korisnika</h2>
+    <table>
+        <tr>
+            <td>Ime</td>
+            <td>@Model.Ime</td>
+        <tr class="odd">
+            <td>Prezime</td>
+            <td>@Model.Prezime</td>
+        </tr>
+        <tr>
+            <td>Korisnicko ime</td>
+            <td>@Model.KorisnickoIme</td>
+        </tr>
+        <tr class="odd">
+            <td>Lozinka</td>
+            <td>@Model.Lozinka</td>
+        </tr>
+        <tr>
+            <td>Pol</td>
+            <td>@Model.Pol</td>
+        </tr>
+        <tr class="odd">
+            <td>Email</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Datum rodjenja</td>
+            <td>@Model.DatumRodjenja</td>
+        </tr>
+        <tr class="odd">
+            <td>Uloga</td>
+            <td>@Model.Uloga</td>
+        </tr>
+    </table>
+</body>

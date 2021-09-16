@@ -1,0 +1,6 @@
+5;Da;1499;sj1;False
+6;Ne;1999;sj2;True
+5;Da;349;sm1;True
+5;Da;259;sjj1;False
+5;Da;300;sjj2;True
+

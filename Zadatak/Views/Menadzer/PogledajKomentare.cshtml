@@ -1,0 +1,85 @@
+﻿@using Zadatak.Models
+@model IEnumerable<Komentar>
+@{
+    ViewBag.Title = "PogledajKomentare";
+}
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        td {
+            width: 100px;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            align-self: center;
+            background-color: limegreen;
+            color: white;
+            border: 1px solid black;
+        }
+
+            input.button {
+                align-self: center;
+                background-color: limegreen;
+                color: white;
+                border: 1px solid black;
+            }
+
+            input:hover {
+                border: 1px solid gray;
+            }
+    </style>
+</head>
+<body>
+    <h2>Potencijalni komentari za aranzman</h2>
+    <table>
+        @foreach (Komentar item in Model)
+        {
+            <tr>
+                <td>Turista koji je ostavio komentar</td>
+                <td>@item.Turista.Ime</td>
+            </tr>
+            <tr class="odd">
+                <td>Aranzman</td>
+                <td>@item.Aranzman.Naziv</td>
+            </tr>
+            <tr>
+                <td>Komentar</td>
+                <td>@item.KomentarTekst</td>
+            </tr>
+            <tr class="odd">
+                <td>Ocena</td>
+                <td>@item.Ocena</td>
+            </tr>
+            <tr>
+                <td>
+                    <form method="post" action="~/Menadzer/OdobriKomentar">
+                        <input type="text" name="komentarTekst" value="@item.KomentarTekst" hidden />
+                        <input class="button" type="submit" value="Odobri komentar" />
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="~/Menadzer/OdbijKomentar">
+                        <input type="text" name="komentarTekst" value="@item.KomentarTekst" hidden />
+                        <input class="button" type="submit" value="Odbij komentar" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

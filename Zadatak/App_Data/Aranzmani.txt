@@ -1,0 +1,3 @@
+STR Brdarevic;Nocenje sa doruckom;Autobus;Valjevo;02/09/2021 00:00:00;10/09/2021 00:00:00;16/09/2021 22:49:00;5;adas;adadsa;;STR Brdarevic;False
+Aranzman1;All inclusive;Individualan;Hurganda;18/09/2021 00:00:00;25/09/2021 00:00:00;16/09/2021 00:31:00;12;Dobar provod u Egiptu;U aranzman je ukljucen prevoz;;Smestaj1;False
+STR Boki;Nocenje sa doruckom;Autobus;Valjevo;17/09/2021 00:00:00;01/10/2021 00:00:00;16/09/2021 00:25:00;5;adas;adadsa;;STR Boki;False

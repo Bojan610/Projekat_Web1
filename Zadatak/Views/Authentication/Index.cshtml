@@ -1,0 +1,120 @@
+﻿@model Zadatak.Models.Korisnik
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <script type="text/javascript">
+        function proveraUnosa(forma) {
+            if (forma.korisnickoIme.value === "") {
+                document.getElementById("korisnickoIme").focus();
+                alert("Polje korisnicko ime ne sme da bude prazno!");
+                return false;
+            } else if (forma.lozinka.value === "") {
+                document.getElementById("lozinka").focus();
+                alert("Polje lozinka ne sme da bude prazno!");
+                return false;
+            } else if (forma.ime.value === "") {
+                document.getElementById("ime").focus();
+                alert("Polje ime ne sme da bude prazno!");
+                return false;
+            } else if (forma.ime.value[0] === forma.ime.value[0].toLowerCase()) {
+                document.getElementById("ime").focus();
+                alert("Ime mora da pocinje sa pocetnim velikim slovom!");
+                return false;
+            } else if (forma.prezime.value === "") {
+                document.getElementById("prezime").focus();
+                alert("Polje prezime ne sme da bude prazno!");
+                return false;
+            } else if (forma.prezime.value[0] === forma.prezime.value[0].toLowerCase()) {
+                document.getElementById("prezime").focus();
+                alert("Prezime mora da pocinje sa pocetnim velikim slovom!");
+                return false;
+            } else if (forma.pol.value === "") {
+                document.getElementById("pol").focus();
+                alert("Polje pol ne sme da bude prazno!");
+                return false;
+            } else if (forma.email.value === "") {
+                document.getElementById("email").focus();
+                alert("Email pol ne sme da bude prazno!");
+                return false;
+            } else if (forma.datumRodjenja.value === "") {
+                document.getElementById("datumRodjenja").focus();
+                alert("Polje datum rodjenja ne sme da bude prazno!");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            background-color: aliceblue;
+        }
+
+            input.button {
+                align-self: center;
+                background-color: limegreen;
+                color: white;
+                border: 1px solid black;
+            }
+
+                input.button:hover {
+                    border: 1px solid gray;
+                }
+
+        div.ViewBag {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registracija</h2>
+    <form onsubmit="return proveraUnosa(this)" method="post" action="Register">
+        <table>
+            <tr><td>Korisnicko ime:</td><td><input type="text" name="korisnickoIme" id="korisnickoIme" /></td></tr>
+            <tr class="odd"><td>Lozinka:</td><td><input type="password" name="lozinka" id="lozinka" /></td></tr>
+            <tr><td>Ime:</td><td><input type="text" name="ime" id="ime" /></td></tr>
+            <tr class="odd"><td>Prezime:</td><td><input type="text" name="prezime" id="prezime" /></td></tr>
+            <tr>
+                <td>Pol:</td>
+                <td>
+                    <input list="polovi" name="pol" id="pol" />
+                    <datalist id="polovi">
+                        <option value="Muski"></option>
+                        <option value="Zenski"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr class="odd"><td>Email:</td><td><input type="email" name="email" id="email" /></td></tr>
+            <tr><td>Datum rodjenja:</td><td><input type="date" name="datumRodjenja" id="datumRodjenja" /></td></tr>
+            <tr>
+                <td>
+                    <input type="text" name="uloga" value="Turista" hidden />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input class="button" type="submit" value="Registruj se" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+    <div class="ViewBag">
+        @ViewBag.Message
+    </div>
+</body>

@@ -1,0 +1,92 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Aranzman
+@{
+    ViewBag.Title = "RezervisiAranzman";
+}
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        td {
+            width: 300px;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            align-self: center;
+            background-color: limegreen;
+            color: white;
+            border: 1px solid black;
+        }
+
+            input:hover {
+                border: 1px solid gray;
+            }
+    </style>
+</head>
+<body>
+    <h2>Pregled aranzmana</h2>
+    <table>
+        <tr>
+            <td>Naziv</td>
+            <td>@Model.Naziv</td>
+        <tr class="odd">
+            <td>Tip aranzmana</td>
+            <td>@Model.TipAranzmana</td>
+        </tr>
+        <tr>
+            <td>Tip prevoza</td>
+            <td>@Model.TipPrevoza</td>
+        </tr>
+        <tr class="odd">
+            <td>Destinacija</td>
+            <td>@Model.LokacijaPutovanja</td>
+        </tr>
+        <tr>
+            <td>Datum pocetka putovanja</td>
+            <td>@Model.DatumPocetka</td>
+        </tr>
+        <tr class="odd">
+            <td>Datum zavrsetka putovanja</td>
+            <td>@Model.DatumZavrsetka</td>
+        </tr>
+        <tr>
+            <td>Vreme nalazenja</td>
+            <td>@Model.VremePolaska</td>
+        </tr>
+        <tr class="odd">
+            <td>Maksimalan broj putnika</td>
+            <td>@Model.MaxBrojPutnika</td>
+        </tr>
+        <tr>
+            <td>Opis aranzmana</td>
+            <td>@Model.OpisAranzmana</td>
+        </tr>
+        <tr class="odd">
+            <td>Program putovanja</td>
+            <td>@Model.ProgramPutovanja</td>
+        </tr>
+    </table>
+    <form method="post" action="~/Turista/RezervisiSmestaj">
+        <input type="text" name="naziv" value="@Model.Naziv" hidden />
+        <input type="submit" value="Rezervisi smestaj" />
+    </form>
+
+</body>
+
+</html>
+
+

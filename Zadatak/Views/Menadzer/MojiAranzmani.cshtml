@@ -1,0 +1,145 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Korisnik
+@{
+    ViewBag.Title = "MojiAranzmani";
+}
+
+<head>
+    <style>
+        body {
+            margin-left: 100px;
+            background-color: aliceblue;
+        }
+
+        div.Pframe {
+            height: 110px;
+            border: 1px solid gray;
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        div.container {
+            display: table-row
+        }
+
+        div.item {
+            float: left;
+            margin: 5px;
+            margin-right: 40px;
+        }
+
+        div.cena {
+            float: left;
+            margin: 5px;
+            margin-left: 130px;
+        }
+
+        span.od {
+            color: red;
+            font-size: 20px;
+        }
+
+        span.cifra {
+            color: gray;
+            font-size: 30px;
+        }
+
+        img {
+            height: 70px;
+            width: 70px;
+            margin-right: 10px;
+        }
+
+        input {
+            background-color: limegreen;
+            color: white;
+            border: none;
+        }
+
+            input:hover {
+                border: 1px solid gray;
+            }
+
+        form {
+            display: inline;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Svi moji aranzmani</h3>
+    <form action="~/Menadzer/Index">
+        <input class="button" type="submit" value="Povratak na pocetnu stranicu" />
+    </form>
+    <div class="container">
+        @foreach (Aranzman item in Model.KreiraniAranzmani)
+        {
+            if (!item.IsDeleted)
+            {
+                <div class="Pframe">
+                    <div class="item">
+                        Polazak<br />
+                        @item.DatumPocetka.Date
+                    </div>
+                    <div class="item">
+                        Povratak<br />
+                        @item.DatumZavrsetka.Date
+                    </div>
+                    <div class="item">
+                        Dana<br />
+                        @item.Dana
+                    </div>
+                    <div class="item">
+                        <img src=@item.Poster />@item.LokacijaPutovanja
+                    </div>
+                    <div class="cena">
+                        cena<br />
+                        <span class="od">od </span><span class="cifra">@item.Smestaj.SmestajneJedinice[0].Cena</span>,00 EUR<br />
+                        <form method="post" action="~/Menadzer/IzmeniAranzman">
+                            <input type="text" name="naziv" value="@item.Naziv" hidden />
+                            <input type="submit" value="Izmeni" />
+                        </form>
+                        <form method="post" action="~/Menadzer/PogledajKomentare">
+                            <input type="text" name="naziv" value="@item.Naziv" hidden />
+                            <input type="submit" value="Pogledaj komentare" />
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <h3>Moji nerezervisani aranzmani</h3>
+    <div class="container">
+        @foreach (Aranzman item in ViewBag.Aranzmani)
+        {
+            if (!item.IsDeleted)
+            {
+                <div class="Pframe">
+                    <div class="item">
+                        Polazak<br />
+                        @item.DatumPocetka
+                    </div>
+                    <div class="item">
+                        Povratak<br />
+                        @item.DatumZavrsetka
+                    </div>
+                    <div class="item">
+                        Dana<br />
+                        @item.Dana
+                    </div>
+                    <div class="item">
+                        <img src=@item.Poster />@item.LokacijaPutovanja
+                    </div>
+                    <div class="cena">
+                        cena<br />
+                        <span class="od">od </span><span class="cifra">@item.Smestaj.SmestajneJedinice[0].Cena</span>,00 EUR<br />
+                        <form method="post" action="~/Menadzer/ObrisiAranzman">
+                            <input type="text" name="naziv" value="@item.Naziv" hidden />
+                            <input type="submit" value="Obrisi" />
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</body>

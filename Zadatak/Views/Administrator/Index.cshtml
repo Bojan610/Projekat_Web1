@@ -1,0 +1,188 @@
+﻿@using Zadatak.Models
+@model IEnumerable<Korisnik>
+@{
+    ViewBag.Title = "IndexAdministrator";
+}
+
+<head>
+    <style>
+        body {
+            background-color: aliceblue;
+            margin-left: 100px;
+        }
+
+        table.podaci {
+            background-color: darkseagreen;
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        td.podaci {
+            width: 180px;
+            height: 30px;
+        }
+
+        input.button {
+            align-self: center;
+            background-color: limegreen;
+            color: white;
+            border: 1px solid black;
+        }
+
+        input {
+            background-color: aliceblue;
+        }
+
+        div.container {
+            display: inline-block;
+            margin-left: 0px;
+        }
+
+        table.Pframe {
+            border: 1px dashed gray;
+            padding: 5px;
+        }
+
+        div.item {
+            float: left;
+            margin-right: 20px;
+        }
+
+        input.button:hover {
+            border: 1px solid gray;
+        }
+
+        form.button {
+            float: left;
+            margin-right: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Dobrodosli @ViewBag.Korisnik.Ime!</h2>
+    <form class="button" action="~/Administrator/DodajMenadzera">
+        <input type="submit" value="Dodaj novog menadzera" class="button" />
+    </form>
+    <form class="button" action="~/Authentication/LogOut">
+        <input type="submit" value="Odjavi se" class="button" />
+    </form>
+    <br />
+    <div class="container">
+        <div class="item">
+            <h3>Pretraga</h3>
+            <form method="post" action="~/Administrator/Pretraga">
+                <table class="Pframe">
+                    <tr><td>Ime:</td><td><input type="text" name="ime" /></td></tr>
+                    <tr><td>Prezime:</td><td><input type="text" name="prezime" /></td></tr>
+                    <tr>
+                        <td>Uloga:</td>
+                        <td>
+                            <input list="uloga" name="uloga" />
+                            <datalist id="uloga">
+                                <option value="Administrator"></option>
+                                <option value="Menadzer"></option>
+                                <option value="Turista"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input class="button" type="submit" value="Pretrazi" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="item">
+            <h3>Sortiranje</h3>
+            <form method="post" action="~/Administrator/Sortiranje">
+                <table class="Pframe">
+                    <tr>
+                        <td>Ime:</td>
+                        <td>
+                            <input list="ime" name="ime" />
+                            <datalist id="ime">
+                                <option value="Rastuce"></option>
+                                <option value="Opadajuce"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Prezime:</td>
+                        <td>
+                            <input list="prezime" name="prezime" />
+                            <datalist id="prezime">
+                                <option value="Rastuce"></option>
+                                <option value="Opadajuce"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Uloga:</td>
+                        <td>
+                            <input list="uloga" name="uloga" />
+                            <datalist id="uloga">
+                                <option value="Rastuce"></option>
+                                <option value="Opadajuce"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input class="button" type="submit" value="Sortiraj" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <table class="podaci">
+        <tr><th>Lista korisnika:</th></tr>
+        <tr class="odd">
+            <td class="podaci">Ime</td>
+            <td class="podaci">Prezime</td>
+            <td class="podaci"></td>
+        </tr>
+        @foreach (Korisnik item in Model)
+        {
+            <tr>
+                <td class="podaci">@item.Ime</td>
+                <td class="podaci">@item.Prezime</td>
+                <td class="podaci">
+                    <form method="post" action="~/Administrator/PregledajKorisnika">
+                        <input type="text" name="korisnickoIme" value="@item.KorisnickoIme" hidden />
+                        <input type="submit" value="Pregledaj korisnika" class="button" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table><br /><br />
+    <table class="podaci">
+        <tr><th>Sumnjivi korisnici:</th></tr>
+        <tr class="odd">
+            <td class="podaci">Ime</td>
+            <td class="podaci">Prezime</td>
+            <td class="podaci"></td>
+        </tr>
+        @foreach (Korisnik item in @ViewBag.Sumnjivi)
+        {
+            <tr>
+                <td class="podaci">@item.Ime</td>
+                <td class="podaci">@item.Prezime</td>
+                <td class="podaci"></td>
+                <td class="podaci">
+                    <form method="post" action="~/Administrator/BlokirajKorisnika">
+                        <input type="text" name="naziv" value="@item.KorisnickoIme" hidden />
+                        <input type="submit" value="Blokiraj korisnika" class="button" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>

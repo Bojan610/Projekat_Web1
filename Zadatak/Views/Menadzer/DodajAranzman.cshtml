@@ -1,0 +1,149 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Aranzman
+@{
+    ViewBag.Title = "DodajAranzman";
+    Layout = null;
+}
+
+<html>
+<head>
+    <script type="text/javascript">
+        function proveraUnosa(forma) {
+            if (forma.naziv.value === "") {
+                document.getElementById("naziv").focus();
+                alert("Polje naziv ne sme da bude prazno!");
+                return false;
+            } else if (forma.tipAranzmana.value === "") {
+                document.getElementById("tipAranzmana").focus();
+                alert("Polje tip aranzmana ne sme da bude prazno!");
+                return false;
+            } else if (forma.tipPrevoza.value === "") {
+                document.getElementById("tipPrevoza").focus();
+                alert("Polje tip prevoza ne sme da bude prazno!");
+                return false;
+            } else if (forma.lokacijaPutovanja.value === "") {
+                document.getElementById("lokacijaPutovanja").focus();
+                alert("Polje lokacija putovanja ne sme da bude prazno!");
+                return false;
+            } else if (forma.datumPocetka.value === "") {
+                document.getElementById("datumPocetka").focus();
+                alert("Polje datum pocetka putovanja ne sme da bude prazno!");
+                return false;
+            } else if (forma.datumZavrsetka.value === "") {
+                document.getElementById("datumZavrsetka").focus();
+                alert("Polje datum zavrsetka putovanja ne sme da bude prazno!");
+                return false;
+            } else if (forma.vremePolaska.value === "") {
+                document.getElementById("vremePolaska").focus();
+                alert("Polje vreme nalazenja ne sme da bude prazno!");
+                return false;
+            } else if (forma.maxBrojPutnika.value === "") {
+                document.getElementById("maxBrojPutnika").focus();
+                alert("Polje maksimalan broj putnika ne sme da bude prazno!");
+                return false;
+            } else if (forma.opisAranzmana.value === "") {
+                document.getElementById("opisAranzmana").focus();
+                alert("Polje opis ne sme da bude prazno!");
+                return false;
+            } else if (forma.programPutovanja.value === "") {
+                document.getElementById("programPutovanja").focus();
+                    alert("Polje program putovanja ne sme da bude prazno!");
+                    return false;
+            } else if (forma.smestaj.value === "") {
+                document.getElementById("smestaj").focus();
+                alert("Morate izabrati smestaj pre nego sto dodate aranzman!");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            background-color: aliceblue;
+        }
+
+            input.button {
+                align-self: center;
+                background-color: limegreen;
+                color: white;
+                border: 1px solid black;
+            }
+
+                input.button:hover {
+                    border: 1px solid gray;
+                }
+
+        div.ViewBag {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dodavanje aranzmana</h2>
+    <form onsubmit="return proveraUnosa(this)" method="post" action="DodajAranzman">
+        <table>
+            <tr><td>Naziv:</td><td><input type="text" name="naziv" id="naziv" /></td></tr>
+            <tr class="odd">
+                <td>Tip aranzmana:</td>
+                <td>
+                    <input list="tipovi" name="tipAranzmana" id="tipAranzmana" />
+                    <datalist id="tipovi">
+                        <option value="Nocenje sa doruckom"></option>
+                        <option value="Polupansion"></option>
+                        <option value="Pun pansion"></option>
+                        <option value="All inclusive"></option>
+                        <option value="Najam apart"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td>Tip prevoza:</td>
+                <td>
+                    <input list="tipoviPrevoz" name="tipPrevoza" id="tipPrevoza" />
+                    <datalist id="tipoviPrevoz">
+                        <option value="Autobus"></option>
+                        <option value="Avion"></option>
+                        <option value="Autobus + Avion"></option>
+                        <option value="Individualan"></option>
+                        <option value="Ostalo"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr class="odd"><td>Destinacija:</td><td><input type="text" name="lokacijaPutovanja" id="lokacijaPutovanja" /></td></tr>
+            <tr><td>Datum pocetka putovanja:</td><td><input type="date" name="datumPocetka" id="datumPocetka" /></td></tr>
+            <tr class="odd"><td>Datum zavrsetka putovanja:</td><td><input type="date" name="datumZavrsetka" id="datumZavrsetka" /></td></tr>
+            <tr><td>Vreme nalazenja:</td><td><input type="time" name="vremePolaska" id="vremePolaska" /></td></tr>
+            <tr class="odd"><td>Maksimalan broj putnika:</td><td><input type="number" name="maxBrojPutnika" id="maxBrojPutnika" /></td></tr>
+            <tr><td>Opis aranzmana:</td><td><input type="text" name="opisAranzmana" id="opisAranzmana" /></td></tr>
+            <tr class="odd"><td>Program putovanja:</td><td><input type="text" name="programPutovanja" id="programPutovanja" /></td></tr>
+            <tr><td>Poster:</td><td><input type="file" id="file" name="file" accept="image/*"></td></tr>
+            <tr class="odd"><td>Smestaj:</td><td><input type="text" id="smestaj" name="smestaj" value="@Model.Smestaj.Naziv" readonly></td></tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input class="button" type="submit" value="Dodaj" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form action="~/Menadzer/DodajSmestaj">
+        <input type="submit" value="Dodaj smestaj" class="button" />
+    </form>
+    <div class="ViewBag">
+        @ViewBag.Message
+    </div>
+</body>
+</html>

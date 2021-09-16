@@ -1,0 +1,227 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Smestaj
+@{
+    ViewBag.Title = "DodajSmestaj";
+    Layout = null;
+}
+
+<html>
+<head>
+    <script type="text/javascript">
+        function proveraUnosa(forma) {
+            if (forma.tipSmestaja.value === "") {
+                document.getElementById("tipSmestaja").focus();
+                alert("Polje tip smestaja ne sme da bude prazno!");
+                return false;
+            } else if (forma.naziv.value === "") {
+                document.getElementById("naziv").focus();
+                alert("Polje naziv ne sme da bude prazno!");
+                return false;
+            } else if (forma.brojZvezdica.value === "" && forma.tipSmestaja.value === "Hotel") {
+                document.getElementById("brojZvezdica").focus();
+                alert("Polje broj zvezdica ne sme da bude prazno za hotele!");
+                return false;
+            } else if (forma.brojZvezdica.value != "" && (forma.tipSmestaja.value == "Motel" || forma.tipSmestaja.value == "Vila")) {
+                document.getElementById("brojZvezdica").focus();
+                alert("Polje broj zvezdica ne sme da bude popunjeno za motele i vile!");
+                return false;
+            } else if (forma.brojZvezdica.value > 5) {
+                document.getElementById("brojZvezdica").focus();
+                alert("Broj zvezdica ne moze biti veci od 5!");
+                return false;
+            } else if (forma.imaBazen.value === "") {
+                document.getElementById("imaBazen").focus();
+                alert("Polje bazen ne sme da bude prazno!");
+                return false;
+            } else if (forma.imaSpaCentar.value === "") {
+                document.getElementById("imaSpaCentar").focus();
+                alert("Polje spa ne sme da bude prazno!");
+                return false;
+            } else if (forma.osobeSaInvaliditetom.value === "") {
+                document.getElementById("osobeSaInvaliditetom").focus();
+                alert("Polje osobe sa invaliditetom ne sme da bude prazno!");
+                return false;
+            } else if (forma.imaWiFi.value === "") {
+                document.getElementById("imaWiFi").focus();
+                alert("Polje wi-fi ne sme da bude prazno!");
+                return false;
+            } else if (forma.smestajnaJedinica.value == 0) {
+                alert("Smestaj mora posedovati bar jednu smestajnu jedinicu!");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function proveraUnosaJedinica(forma) {
+            if (forma.maxBrojGostiju.value === "") {
+                document.getElementById("maxBrojGostiju").focus();
+                alert("Polje broj gostiju ne sme da bude prazno!");
+                return false;
+            } else if (forma.kucniLjubimci.value === "") {
+                document.getElementById("kucniLjubimci").focus();
+                alert("Polje za ljubimce ne sme da bude prazno!");
+                return false;
+            } else if (forma.cena.value === "") {
+                document.getElementById("cena").focus();
+                alert("Polje cena ne sme da bude prazno!");
+                return false;
+            } else if (forma.idSmestajneJedinice.value === "") {
+                    document.getElementById("idSmestajneJedinice").focus();
+                    alert("Polje id smestajne jedinice ne sme da bude prazno!");
+                    return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        td {
+            width: 250px;
+        }
+
+        input {
+            background-color: aliceblue;
+        }
+
+            input.button {
+                align-self: center;
+                background-color: limegreen;
+                color: white;
+                border: 1px solid black;
+            }
+
+                input.button:hover {
+                    border: 1px solid gray;
+                }
+
+        div.ViewBag {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dodavanje smestaja</h1>
+    <form onsubmit="return proveraUnosa(this)" method="post" action="DodajSmestaj">
+        <table>
+            <tr>
+                <td>Tip smestaja:</td>
+                <td>
+                    <input list="tipovi" name="tipSmestaja" id="tipSmestaja" />
+                    <datalist id="tipovi">
+                        <option value="Hotel"></option>
+                        <option value="Motel"></option>
+                        <option value="Vila"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr class="odd"><td>Naziv:</td><td><input type="text" name="naziv" id="naziv" /></td></tr>
+            <tr><td>Broj zvezdica:</td><td><input type="number" name="brojZvezdica" id="brojZvezdica" /></td></tr>
+            <tr class="odd">
+                <td>Postojane bazena:</td>
+                <td>
+                    <input list="bazeni" name="imaBazen" id="imaBazen" />
+                    <datalist id="bazeni">
+                        <option value="Da"></option>
+                        <option value="Ne"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td>Postojanje spa centra:</td>
+                <td>
+                    <input list="spaCentri" name="imaSpaCentar" id="imaSpaCentar" />
+                    <datalist id="spaCentri">
+                        <option value="Da"></option>
+                        <option value="Ne"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>Prilagodjeno za osobe sa invaliditetom:</td>
+                <td>
+                    <input list="invalidi" name="osobeSaInvaliditetom" id="osobeSaInvaliditetom" />
+                    <datalist id="invalidi">
+                        <option value="Da"></option>
+                        <option value="Ne"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td>Postojanje Wi-Fi-a:</td>
+                <td>
+                    <input list="wifi" name="imaWiFi" id="imaWiFi" />
+                    <datalist id="wifi">
+                        <option value="Da"></option>
+                        <option value="Ne"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input class="button" type="submit" value="Dodaj smestaj" />
+                </td>
+            </tr>
+            <tr><td><input type="number" id="smestajnaJedinica" name="smestajnaJedinica" value="@Model.SmestajneJedinice.Count" hidden></td></tr>
+        </table>
+    </form>
+    <h2>Dodavanje smestajne jedinice</h2>
+    <form onsubmit="return proveraUnosaJedinica(this)" method="post" action="DodajSmestajnuJedinicu">
+        <table>
+            <tr><td>Dozvoljen broj gostiju</td><td><input type="number" name="maxBrojGostiju" id="maxBrojGostiju" /></td></tr>
+            <tr class="odd">
+                <td>Dozvoljen boravak kucnim ljubimcima</td>
+                <td>
+                    <input list="ljubimci" name="kucniLjubimci" id="kucniLjubimci" />
+                    <datalist id="ljubimci">
+                        <option value="Da"></option>
+                        <option value="Ne"></option>
+                    </datalist>
+                </td>
+            <tr><td>Cena za celu smestajnu jedinicu</td><td><input type="number" name="cena" id="cena" /></td></tr>
+            <tr class="odd"><td>Jedinstveni indefitikator za smestajnu jedinicu</td><td><input type="text" name="idSmestajneJedinice" id="idSmestajneJedinice" /></td></tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input class="button" type="submit" value="Dodaj smestajnu jedinicu" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div class="ViewBag">
+        @ViewBag.Message
+    </div>
+    <h2>Lista smestajnih jedinica</h2>
+    <table>
+        <tr>
+            <td>Dozvoljen broj gostiju</td>
+            <td>Dozvoljen boravak kucnim ljubimcima</td>
+            <td>Cena za smestajnu jedinicu</td>
+            <td>Jedinstveni indefitikator za smestajnu jedinicu</td>
+        </tr>
+        @foreach (SmestajnaJedinica item in Model.SmestajneJedinice)
+        {
+            <tr class="odd">
+                <td>@item.MaxBrojGostiju</td>
+                <td>@item.KucniLjubimci</td>
+                <td>@item.Cena</td>
+                <td>@item.IdSmestajneJedinice</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
+
+

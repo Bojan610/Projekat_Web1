@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "LogIn";
+}
+<head>
+    <script type="text/javascript">
+        function proveraUnosa(forma) {
+            if (forma.korisnickoIme.value === "") {
+                document.getElementById("korisnickoIme").focus();
+                alert("Polje korisnicko ime ne sme da bude prazno!");
+                return false;
+            } else if (forma.lozinka.value === "") {
+                document.getElementById("lozinka").focus();
+                alert("Polje lozinka ne sme da bude prazno!");
+                return false;
+            }
+            else
+                return true;
+
+        }
+    </script>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input {
+            background-color: aliceblue;
+        }
+
+            input.button {
+                align-self: center;
+                background-color: limegreen;
+                color: white;
+                border: 1px solid black;
+            }
+
+                input.button:hover {
+                    border: 1px solid gray;
+                }
+
+        div.ViewBag {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Prijava</h2>
+    <form onsubmit="return proveraUnosa(this)" method="post" action="LogIn">
+        <table>
+            <tr><td>Korisnicko ime:</td><td><input type="text" name="korisnickoIme" id="korisnickoIme" /></td></tr>
+            <tr class="odd"><td>Lozinka:</td><td><input type="password" name="lozinka" id="lozinka" /></td></tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input class="button" type="submit" value="Prijavi se" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+    <div class="ViewBag">
+        @ViewBag.Message
+    </div>
+</body>

@@ -1,0 +1,19 @@
+Motel;Smestaj1;0;Da;Da;Da;Da;False
+sj1
+sj2
+**
+sj1
+sj2
+**
+Hotel;STR Brdarevic;5;Da;Da;Da;Da;False
+sm1
+**
+sm1
+**
+Motel;STR Boki;0;Da;Da;Da;Da;False
+sjj1
+sjj2
+**
+sjj1
+sjj2
+**

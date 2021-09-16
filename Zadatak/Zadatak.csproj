@@ -88,20 +88,83 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Aranzmani.txt" />
+    <Content Include="App_Data\Komentari.txt" />
+    <Content Include="App_Data\Korisnici.txt" />
+    <Content Include="App_Data\Rezervacije.txt" />
+    <Content Include="App_Data\Smestaji.txt" />
+    <Content Include="App_Data\SmestajneJedinice.txt" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
+    <Content Include="Views\Administrator\DodajMenadzera.cshtml" />
+    <Content Include="Views\Administrator\PregledajKorisnika.cshtml" />
+    <Content Include="Views\Authentication\Index.cshtml" />
+    <Content Include="Views\Authentication\LogIn.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\PregledajAranzman.cshtml" />
+    <Content Include="Views\Home\PregledajProsleAranzmane.cshtml" />
+    <Content Include="Views\Home\PregledajSmestaj.cshtml" />
+    <Content Include="Views\Menadzer\Index.cshtml" />
+    <Content Include="Views\Menadzer\DodajAranzman.cshtml" />
+    <Content Include="Views\Menadzer\DodajSmestaj.cshtml" />
+    <Content Include="Views\Menadzer\PregledajAranzman.cshtml" />
+    <Content Include="Views\Menadzer\PregledajSmestaj.cshtml" />
+    <Content Include="Views\Menadzer\MojiAranzmani.cshtml" />
+    <Content Include="Views\Menadzer\IzmeniAranzman.cshtml" />
+    <Content Include="Views\Menadzer\IzmeniSmestaj.cshtml" />
+    <Content Include="Views\Menadzer\PogledajKomentare.cshtml" />
+    <Content Include="Views\Turista\Index.cshtml" />
+    <Content Include="Views\Turista\PregledajAranzman.cshtml" />
+    <Content Include="Views\Turista\PregledajSmestaj.cshtml" />
+    <Content Include="Views\Turista\RezervisiAranzman.cshtml" />
+    <Content Include="Views\Turista\RezervisiSmestaj.cshtml" />
+    <Content Include="Views\Turista\MojeRezervacije.cshtml" />
+    <Content Include="Views\Turista\ProsleRezervacije.cshtml" />
+    <Content Include="Views\Turista\DodajKomentar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenadzerController.cs" />
+    <Compile Include="Controllers\TuristaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Aranzman.cs" />
+    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\DataWrite.cs" />
+    <Compile Include="Models\Komentar.cs" />
+    <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\MestoNalazenja.cs" />
+    <Compile Include="Models\Rezervacija.cs" />
+    <Compile Include="Models\Smestaj.cs" />
+    <Compile Include="Models\SmestajnaJedinica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,9 +173,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Authentication\" />
+    <Folder Include="Models\Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,150 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Aranzman
+@{
+    ViewBag.Title = "IzmeniAranzman";
+}
+
+<html>
+<head>
+    <script>
+        function proveraUnosa(forma) {
+            if (forma.naziv.value === "") {
+                document.getElementById("naziv").focus();
+                alert("Polje naziv ne sme da bude prazno!");
+                return false;
+            } else if (forma.tipAranzmana.value === "") {
+                document.getElementById("tipAranzmana").focus();
+                alert("Polje tip aranzmana ne sme da bude prazno!");
+                return false;
+            } else if (forma.tipPrevoza.value === "") {
+                document.getElementById("tipPrevoza").focus();
+                alert("Polje tip prevoza ne sme da bude prazno!");
+                return false;
+            } else if (forma.lokacijaPutovanja.value === "") {
+                document.getElementById("lokacijaPutovanja").focus();
+                alert("Polje lokacija putovanja ne sme da bude prazno!");
+                return false;
+            } else if (forma.datumPocetka.value === "") {
+                document.getElementById("datumPocetka").focus();
+                alert("Polje datum pocetka putovanja ne sme da bude prazno!");
+                return false;
+            } else if (forma.datumZavrsetka.value === "") {
+                document.getElementById("datumZavrsetka").focus();
+                alert("Polje datum zavrsetka putovanja ne sme da bude prazno!");
+                return false;
+            } else if (forma.vremePolaska.value === "") {
+                document.getElementById("vremePolaska").focus();
+                alert("Polje vreme nalazenja ne sme da bude prazno!");
+                return false;
+            } else if (forma.maxBrojPutnika.value === "") {
+                document.getElementById("maxBrojPutnika").focus();
+                alert("Polje maksimalan broj putnika ne sme da bude prazno!");
+                return false;
+            } else if (forma.opisAranzmana.value === "") {
+                document.getElementById("opisAranzmana").focus();
+                alert("Polje opis ne sme da bude prazno!");
+                return false;
+            } else if (forma.programPutovanja.value === "") {
+                document.getElementById("programPutovanja").focus();
+                alert("Polje program putovanja ne sme da bude prazno!");
+                return false;
+            } else if (forma.smestaj.value === "") {
+                document.getElementById("smestaj").focus();
+                alert("Morate izabrati smestaj pre nego sto dodate aranzman!");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        td {
+            width: 300px;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+
+        input.button {
+            align-self: center;
+            background-color: limegreen;
+            color: white;
+            border: 1px solid black;
+        }
+
+        input {
+            background-color: aliceblue;
+        }
+
+            input.button:hover {
+                border: 1px solid gray;
+            }
+    </style>
+</head>
+<body>
+    <h2>Izmena aranzmana</h2>
+    <form onsubmit="return proveraUnosa(this)" method="post" action="SacuvajIzmene">
+        <table>
+            <tr><td>Naziv:</td><td><input type="text" name="naziv" id="naziv" value="@Model.Naziv" readonly /></td></tr>
+            <tr class="odd">
+                <td>Tip aranzmana:</td>
+                <td>
+                    <input list="tipovi" name="tipAranzmana" id="tipAranzmana" value="@Model.TipAranzmana" />
+                    <datalist id="tipovi">
+                        <option value="Nocenje sa doruckom"></option>
+                        <option value="Polupansion"></option>
+                        <option value="Pun pansion"></option>
+                        <option value="All inclusive"></option>
+                        <option value="Najam apart"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td>Tip prevoza:</td>
+                <td>
+                    <input list="tipoviPrevoz" name="tipPrevoza" id="tipPrevoza" value="@Model.TipPrevoza" />
+                    <datalist id="tipoviPrevoz">
+                        <option value="Autobus"></option>
+                        <option value="Avion"></option>
+                        <option value="Autobus + Avion"></option>
+                        <option value="Individualan"></option>
+                        <option value="Ostalo"></option>
+                    </datalist>
+                </td>
+            </tr>
+            <tr class="odd"><td>Destinacija:</td><td><input type="text" name="lokacijaPutovanja" id="lokacijaPutovanja" value="@Model.LokacijaPutovanja" /></td></tr>
+            <tr><td>Datum pocetka putovanja:</td><td><input type="date" name="datumPocetka" id="datumPocetka" value="@Model.DatumPocetka" /></td></tr>
+            <tr class="odd"><td>Datum zavrsetka putovanja:</td><td><input type="date" name="datumZavrsetka" id="datumZavrsetka" value="@Model.DatumZavrsetka" /></td></tr>
+            <tr><td>Vreme nalazenja:</td><td><input type="time" name="vremePolaska" id="vremePolaska" value="@Model.VremePolaska" /></td></tr>
+            <tr class="odd"><td>Maksimalan broj putnika:</td><td><input type="number" name="maxBrojPutnika" id="maxBrojPutnika" value="@Model.MaxBrojPutnika" /></td></tr>
+            <tr><td>Opis aranzmana:</td><td><input type="text" name="opisAranzmana" id="opisAranzmana" value="@Model.OpisAranzmana" /></td></tr>
+            <tr class="odd"><td>Program putovanja:</td><td><input type="text" name="programPutovanja" id="programPutovanja" value="@Model.ProgramPutovanja" /></td></tr>
+            <tr><td>Poster:</td><td><input type="file" id="file" name="file" accept="image/*" value="@Model.Poster"></td></tr>
+            <tr class="odd"><td>Smestaj:</td><td><input type="text" id="smestaj" name="smestaj" value="@Model.Smestaj.Naziv" readonly></td></tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input class="button" type="submit" value="Sacuvaj izmene" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form method="post" action="~/Menadzer/IzmeniSmestaj">
+        <input type="text" name="naziv" value="@Model.Naziv" hidden />
+        <input class="button" type="submit" value="Izmeni smestaj za dati aranzman" />
+    </form>
+
+</body>
+
+</html>
+

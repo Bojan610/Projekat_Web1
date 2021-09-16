@@ -1,0 +1,84 @@
+﻿@using Zadatak.Models
+@model Zadatak.Models.Smestaj
+@{
+    ViewBag.Title = "PregledajSmestaj";
+}
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        table {
+            background-color: darkseagreen;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        td {
+            width: 300px;
+        }
+
+        tr.odd {
+            background-color: palegreen;
+        }
+    </style>
+</head>
+<body>
+    <h2>Pregled smestaja</h2>
+    <table>
+        <tr>
+            <td>Naziv</td>
+            <td>@Model.Naziv</td>
+        <tr class="odd">
+            <td>Tip smestaja</td>
+            <td>@Model.TipSmestaja</td>
+        </tr>
+        <tr>
+            <td>Broj zvezdica</td>
+            <td>@Model.BrojZvezdica</td>
+        </tr>
+        <tr class="odd">
+            <td>Postojanje bazena</td>
+            <td>@Model.ImaBazen</td>
+        </tr>
+        <tr>
+            <td>Postojanje spa centra</td>
+            <td>@Model.ImaSpaCentar</td>
+        </tr>
+        <tr class="odd">
+            <td>Prilagodjeno za osobe sa invaliditetom</td>
+            <td>@Model.OsobeSaInvaliditetom</td>
+        </tr>
+        <tr>
+            <td>Postoji Wi-Fi</td>
+            <td>@Model.ImaWiFi</td>
+        </tr>
+    </table>
+    <h2>Lista smestajnih jedinica</h2>
+    <table>
+        <tr>
+            <td>Dozvoljen broj gostiju</td>
+            <td>Dozvoljen boravak kucnim ljubimcima</td>
+            <td>Cena za smestajnu jedinicu</td>
+            <td>Jedinstveni indefitikator za smestajnu jedinicu</td>
+        </tr>
+        @foreach (SmestajnaJedinica item in Model.SmestajneJedinice)
+        {
+            if (!item.IsDeleted)
+            {
+                <tr class="odd">
+                    <td>@item.MaxBrojGostiju</td>
+                    <td>@item.KucniLjubimci</td>
+                    <td>@item.Cena</td>
+                    <td>@item.IdSmestajneJedinice</td>
+                </tr>
+            }
+        }
+    </table>
+
+</body>
+</html>
+
