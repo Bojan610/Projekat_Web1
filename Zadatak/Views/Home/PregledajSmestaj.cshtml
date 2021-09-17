@@ -24,6 +24,41 @@
         tr.odd {
             background-color: palegreen;
         }
+
+        div.container {
+            display: inline-block;
+            margin-left: 0px;
+        }
+
+        table.Pframe {
+            border: 1px dashed gray;
+            padding: 5px;
+        }
+
+        div.item {
+            float: left;
+            margin-right: 20px;
+        }
+
+        input.button:hover {
+            border: 1px solid gray;
+        }
+
+        form.button {
+            float: left;
+            margin-right: 20px;
+        }
+
+        input {
+            background-color: aliceblue;
+        }
+
+        input.button {
+            align-self: center;
+            background-color: limegreen;
+            color: white;
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -58,6 +93,66 @@
         </tr>
     </table>
     <h2>Lista smestajnih jedinica</h2>
+    <div class="container">
+        <div class="item">
+            <h3>Pretraga</h3>
+            <form method="post" action="~/Home/Pretraga">
+                <table class="Pframe">
+                    <tr><td>Donja granica za dozvoljen broj gostiju:</td><td><input type="number" name="donjaGranica" /></td></tr>
+                    <tr><td>Gornja granica za dozvoljen broj gostiju:</td><td><input type="number" name="gornjaGranica" /></td></tr>
+                    <tr>
+                        <td>Dozvoljen boravak kućnim ljubimcima:</td>
+                        <td>
+                            <input list="ljubimci" name="ljubimci" />
+                            <datalist id="ljubimci">
+                                <option value="Da"></option>
+                                <option value="Ne"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr><td>Cena za celu smeštajnu jedinicu:</td><td><input type="number" name="cena" /></td></tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input class="button" type="submit" value="Pretrazi" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="item">
+            <h3>Sortiranje</h3>
+            <form method="post" action="~/Home/Sortiranje">
+                <table class="Pframe">
+                    <tr>
+                        <td>Dozvoljen broj gostiju:</td>
+                        <td>
+                            <input list="brojGostiju" name="brojGostiju" />
+                            <datalist id="brojGostiju">
+                                <option value="Rastuce"></option>
+                                <option value="Opadajuce"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cena za celu smeštajnu jedinicu:</td>
+                        <td>
+                            <input list="cena" name="cena" />
+                            <datalist id="cena">
+                                <option value="Rastuce"></option>
+                                <option value="Opadajuce"></option>
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input type="text" name="naziv" value="@Model.Naziv" hidden />
+                            <input class="button" type="submit" value="Sortiraj" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
     <table>
         <tr>
             <td>Dozvoljen broj gostiju</td>

@@ -508,10 +508,6 @@ namespace Zadatak.Controllers
                 SmestajnaJedinica sjj = aranzman.Smestaj.SlobodneSmestajneJedinice.Find(u => u.IdSmestajneJedinice.Equals(id));
                 sjj.IsDeleted = true;
 
-                /*if (aranzmani.Contains(aranzman))
-                {
-                    aranzmani[aranzmani.IndexOf(aranzman)].Smestaj.SmestajneJedinice.Remove(sj);
-                    aranzmani[aranzmani.IndexOf(aranzman)].Smestaj.SlobodneSmestajneJedinice.Remove(sj);*/
                 HttpContext.Application["aranzmani"] = aranzmani;
 
                 List<SmestajnaJedinica> smestajneJedinice = new List<SmestajnaJedinica>();
@@ -523,13 +519,6 @@ namespace Zadatak.Controllers
                 }
 
                 DataWrite.PisiSmestajneJedinice("~/App_Data/SmestajneJedinice.txt", smestajneJedinice);
-                /*}
-                else
-                {
-                    prosliAranzmani[prosliAranzmani.IndexOf(aranzman)].Smestaj.SmestajneJedinice.Remove(sj);
-                    prosliAranzmani[prosliAranzmani.IndexOf(aranzman)].Smestaj.SlobodneSmestajneJedinice.Remove(sj);
-                    HttpContext.Application["prosliAranzmani"] = prosliAranzmani;
-                }*/
             }
             else
             {
@@ -551,12 +540,6 @@ namespace Zadatak.Controllers
 
             if (aranzman == null)
                 return View(kom);
-
-            /*foreach (Komentar item in komentari)
-            {
-                if (korisnik.KreiraniAranzmani.Contains(item.Aranzman) && item.Aranzman.Naziv == aranzman.Naziv)
-                    kom.Add(item);
-            }*/
 
             foreach (Aranzman item in korisnik.KreiraniAranzmani)
             {

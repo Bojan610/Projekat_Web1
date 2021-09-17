@@ -5,15 +5,12 @@ sj2
 sj1
 sj2
 **
-Hotel;STR Brdarevic;5;Da;Da;Da;Da;False
+Vila;Smestaj2;0;Da;Ne;Da;Da;False
 sm1
+sm2
+sm3
 **
 sm1
-**
-Motel;STR Boki;0;Da;Da;Da;Da;False
-sjj1
-sjj2
-**
-sjj1
-sjj2
+sm2
+sm3
 **

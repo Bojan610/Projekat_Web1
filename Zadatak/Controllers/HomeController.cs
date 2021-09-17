@@ -63,7 +63,6 @@ namespace Zadatak.Controllers
                     HttpContext.Application["prosliAranzmani"] = prosliAranzmani;
                     aranzmani.Remove(item);
                     HttpContext.Application["aranzmani"] = aranzmani;
-                    //aranzmani.RemoveAt(aranzmani.IndexOf(item));
                 }
             }
 
@@ -75,7 +74,6 @@ namespace Zadatak.Controllers
                     HttpContext.Application["prosliAranzmani"] = prosliAranzmani;
                     aranzmani.Add(item);
                     HttpContext.Application["aranzmani"] = aranzmani;
-
                 }
             }
 
@@ -126,6 +124,43 @@ namespace Zadatak.Controllers
             }
 
             return View(aranzman.Smestaj);
+        }
+
+        [HttpPost]
+        public ActionResult Sortiranje(string brojGostiju, string cena, string naziv)
+        {
+            List<Aranzman> aranzmani = (List<Aranzman>)HttpContext.Application["aranzmani"];
+            Smestaj smestaj = new Smestaj();
+            foreach (Aranzman ar in aranzmani)
+            {
+                if (ar.Smestaj.Naziv == naziv)
+                {
+                    smestaj = ar.Smestaj;
+                    break;
+                }
+            }
+
+            if (brojGostiju != "")
+            {
+                if (brojGostiju == "Rastuce")
+                {
+                    IEnumerable<SmestajnaJedinica> query = smestaj.SmestajneJedinice.OrderBy(sj => sj.MaxBrojGostiju);
+                    smestaj.SmestajneJedinice = query.ToList();
+                    smestaj.SlobodneSmestajneJedinice = query.ToList();
+                }
+            }
+
+            if (cena != "")
+            {
+                if (cena == "Rastuce")
+                {
+                    IEnumerable<SmestajnaJedinica> query = smestaj.SmestajneJedinice.OrderBy(sj => sj.Cena);
+                    smestaj.SmestajneJedinice = query.ToList();
+                    smestaj.SlobodneSmestajneJedinice = query.ToList();
+                }
+            }
+            
+            return View("PregledajSmestaj", smestaj);
         }
 
         public ActionResult PregledajProsleAranzmane()

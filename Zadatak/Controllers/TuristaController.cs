@@ -33,7 +33,6 @@ namespace Zadatak.Controllers
                     HttpContext.Application["prosliAranzmani"] = prosliAranzmani;
                     aranzmani.Remove(item);
                     HttpContext.Application["aranzmani"] = aranzmani;
-                    //aranzmani.RemoveAt(aranzmani.IndexOf(item));
                 }
             }
 
@@ -195,13 +194,9 @@ namespace Zadatak.Controllers
             List<Korisnik> sumnjiviKorisnici = (List<Korisnik>)HttpContext.Application["sumnjiviKorisnici"];
             List<Rezervacija> rezervacije = (List<Rezervacija>)HttpContext.Application["rezervacije"];
             Rezervacija rez = rezervacije.Find(u => u.IdRezervacije.Equals(idRezervacije));
-            // Rezervacija rezStara = rez;
-
-            //rez.Aranzman.Smestaj.SlobodneSmestajneJedinice.Add(rez.SmestajnaJedinica);
+          
             rez.SmestajnaJedinica.IsDeleted = false;
             rez.Status = "Otkazana";
-            //rez.Turista.RezervisaniAranzmani.Remove(rez.Aranzman);
-            //rez.Turista.RezervisaniAranzmani[rez.Turista.RezervisaniAranzmani.IndexOf(rez.Aranzman)].IsDeleted = true;
             rez.Turista.BrojOtkaza++;
 
             if (rez.Turista.BrojOtkaza >= 2 && !sumnjiviKorisnici.Contains(rez.Turista))
@@ -210,7 +205,6 @@ namespace Zadatak.Controllers
                 HttpContext.Application["sumnjiviKorisnici"] = sumnjiviKorisnici;
             }
 
-            //rezervacije[rezervacije.IndexOf(rezStara)] = rez;
             HttpContext.Application["rezervacije"] = rezervacije;
             DataWrite.PisiRezervacije("~/App_Data/Rezervacije.txt", rezervacije);
 

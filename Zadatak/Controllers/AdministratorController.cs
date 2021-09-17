@@ -132,6 +132,26 @@ namespace Zadatak.Controllers
             return View("Index", korisniciRet);
         }
 
+        /*[HttpPost]
+        public ActionResult Sortiranje(string ime, string prezime, string uloga)
+        {
+            List<Korisnik> korisnici = (List<Korisnik>)HttpContext.Application["korisnici"];
+            if (ime != "")
+            {
+                if (ime == "Rastuce")
+                {
+                    //Array.Sort(korisnici.ToArray());
+                    
+                }
+            }
+
+            Korisnik korisnik = (Korisnik)Session["korisnik"];
+            List<Korisnik> sumnjivi = new List<Korisnik>();
+            ViewBag.Korisnik = korisnik;
+            ViewBag.Sumnjivi = sumnjivi;
+            return View("Index", korisnici);
+        }*/
+
         [HttpPost]
         public ActionResult BlokirajKorisnika(string naziv)
         {

@@ -3,7 +3,7 @@ admin1;admin1;Marko;Markovic;Muski;markomarkovic@gmail.com;01/01/1990;Administra
 **
 pera;pera;Pera;Peric;Muski;peraperic@gmail.com;06/06/1980;Menadzer;0;False
 Aranzman1
-STR Boki
+Aranzman2
 **
 **
 mika;mika;Mika;Mikic;Muski;mikamikic@gmail.com;04/25/1997;Turista;0;False
@@ -12,13 +12,4 @@ Aranzman1
 **
 david;david;David;David;Muski;daviddavidovic@gmail.com;02/03/1994;Turista;3;True
 **
-**
-ana;ana;Ana;Brdarevic;Zenski;anabrdarevic@gmail.com;2021-09-02;Menadzer;0;False
-STR Brdarevic
-**
-**
-borka;borka;Borka;Brdarevic;Zenski;anabrdarevic@gmail.com;2021-09-01;Turista;0;False
-**
-STR Brdarevic
-STR Brdarevic
 **
